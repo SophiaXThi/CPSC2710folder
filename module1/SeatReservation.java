@@ -13,6 +13,7 @@ public class SeatReservation {
     }    
 
     public void setFlightDesignation(String fd) {
+<<<<<<< HEAD
         //We need to count the length of the string
         int count = 0;
         if (fd != null) {
@@ -29,6 +30,13 @@ public class SeatReservation {
         } else {
             this.flightDesignator = fd;
         }
+=======
+        // this.flightDesignator = fd;
+        if (flightDesignator == null){
+         throw new IllegalArgumentException("flight designator cannot be null");
+      }
+      this.flightDesignator = fd;
+>>>>>>> origin/branch1-test1
     }
 
     public java.time.LocalDate getFlightDate() {
