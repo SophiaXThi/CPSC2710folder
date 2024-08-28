@@ -25,7 +25,7 @@ public class SeatReservation {
         }
 
         //Strings less than 4 or greater than 6 are not allowed
-        if (count <= 4 || count >= 6) {
+        if (count < 4 || count > 6) {
             throw new IllegalArgumentException("Invalid flight designation");
         } else {
             this.flightDesignator = fd;
