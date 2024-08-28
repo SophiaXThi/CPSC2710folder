@@ -72,13 +72,13 @@ public class SeatReservation {
     public String toString() {
         //Will have to add something to deal with null exceptions
         if(flightDesignator == null) {
-            flightDesignator = "";
+            flightDesignator = "null";
         }
         if(firstName == null) {
-            firstName = "";
+            firstName = "null";
         }
         if (lastName == null) {
-            lastName = "";
+            lastName = "null";
         }
         return "SeatReservation{flightDesignator=" + flightDesignator + "," +
                 "flightDate=" + flightDate + "," + "firstName=" + firstName + "," +
