@@ -80,9 +80,9 @@ public class SeatReservation {
         if (lastName == null) {
             lastName = "";
         }
-        return "SeatReservation {flightDesignator=" + flightDesignator + "," +
+        return "{flightDesignator=" + flightDesignator + "," +
                 "flightDate=" + flightDate + "," + "firstName=" + firstName + "," +
-                " lastName:" + lastName;
+                " lastName:" + lastName + "}";
     }
 
         
