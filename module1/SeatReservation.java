@@ -80,7 +80,8 @@ public class SeatReservation {
         if (lastName == null) {
             lastName = "";
         }
-        return "Flight Designator: " + flightDesignator + "\n" + "Flight Date: " + flightDate + "\n" + "Passenger Name: " + firstName + " " + lastName;
+        return "flightDesignator: " + flightDesignator + "\n" +
+                "flightDate: " + flightDate + "\n" + "firstName: " + firstName + " lastName:" + lastName;
     }
 
         
