@@ -8,17 +8,17 @@ public class SeatReservation {
 
 
     //Getters and Setters
-    public String getFlightDesignation() {
+    public String getFlightDesignator() {
         return flightDesignator;
     }    
 
-    public void setFlightDesignation(String fd) {
+    public void setFlightDesignator(String sr) {
 
         //We need to count the length of the string
         int count = 0;
-        if (fd != null) {
-            for (int i = 0; i < fd.length(); i++) {
-                if (fd.charAt(i) != ' ') {
+        if (sr != null) {
+            for (int i = 0; i < sr.length(); i++) {
+                if (sr.charAt(i) != ' ') {
                     count++;
                 }
             }
@@ -28,9 +28,11 @@ public class SeatReservation {
         if (count < 4 || count > 6) {
             throw new IllegalArgumentException("Invalid flight designation");
         } else {
-            this.flightDesignator = fd;
+            this.flightDesignator = sr;
         }
         // this.flightDesignator = fd;
+
+
         if (flightDesignator == null){
          throw new IllegalArgumentException("flight designator cannot be null");
       }
