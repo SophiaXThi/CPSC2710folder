@@ -5,6 +5,8 @@ public class SeatReservation {
     private java.time.LocalDate flightDate;
     private String firstName;
     private String lastName;
+    private int numberOfBags;
+    private boolean flyingWithInfant;
 
 
     //Getters and Setters
@@ -69,6 +71,27 @@ public class SeatReservation {
         this.lastName = ln;
     }
 
+    public int getNumberOfBags() {
+        return numberOfBags;
+    }
+
+    public void setNumberOfBags(int nb) {
+        this.numberOfBags = nb;
+    }
+
+    public boolean isFlyingWithInfant() {
+        return flyingWithInfant;
+    }
+
+    public void makeFlyingWithInfant() {
+        this.flyingWithInfant = true;
+    }
+
+    public void makeNotFlyingWithInfant() {
+        this.flyingWithInfant = false;
+    }
+
+    //*****************************************************************************************
     public String toString() {
         //Will have to add something to deal with null exceptions
         if(flightDesignator == null) {
@@ -80,9 +103,11 @@ public class SeatReservation {
         if (lastName == null) {
             lastName = "null";
         }
+
         return "SeatReservation{flightDesignator=" + flightDesignator + "," +
                 "flightDate=" + flightDate + "," + "firstName=" + firstName + "," +
-                "lastName=" + lastName + "}";
+                "lastName=" + lastName + "," + "numberOfBags=" + numberOfBags + "," +
+                "flyingWithInfant=" + flyingWithInfant + "}";
     }
 
         
