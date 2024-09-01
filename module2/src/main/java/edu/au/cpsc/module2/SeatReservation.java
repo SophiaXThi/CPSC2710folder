@@ -1,3 +1,5 @@
+package edu.au.cpsc.module2;
+
 public class SeatReservation {
 
     //Private instance variables
@@ -32,13 +34,10 @@ public class SeatReservation {
         } else {
             this.flightDesignator = sr;
         }
-        // this.flightDesignator = fd;
-
 
         if (flightDesignator == null){
-         throw new IllegalArgumentException("flight designator cannot be null");
-      }
-
+            throw new IllegalArgumentException("flight designator cannot be null");
+        }
     }
 
     public java.time.LocalDate getFlightDate() {
@@ -109,7 +108,6 @@ public class SeatReservation {
                 "lastName=" + lastName + "," + "numberOfBags=" + numberOfBags + "," +
                 "flyingWithInfant=" + flyingWithInfant + "}";
     }
-
         
     public static void main(String[] args){
 
