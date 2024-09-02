@@ -75,8 +75,8 @@ public class SeatReservation {
     }
 
     public void setNumberOfBags(int nb) {
-        if (nb < 1) {
-            throw new IllegalArgumentException("Number of bags cannot be less than 1");
+        if (nb < 0) {
+            throw new IllegalArgumentException("Number of bags cannot be less than 0");
         }
         else{
             this.numberOfBags = nb;
