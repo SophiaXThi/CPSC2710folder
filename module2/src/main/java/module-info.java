@@ -10,6 +10,7 @@ module edu.au.cpsc.module2 {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
 
     opens edu.au.cpsc.module2 to javafx.fxml;
     exports edu.au.cpsc.module2;

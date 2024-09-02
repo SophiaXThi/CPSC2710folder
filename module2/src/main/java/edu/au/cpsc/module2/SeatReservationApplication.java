@@ -1,23 +1,32 @@
 package edu.au.cpsc.module2;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 //import org.w3c.dom.Text;
 import java.io.IOException;
 
-import static javafx.scene.layout.AnchorPane.setBottomAnchor;
 
 public class SeatReservationApplication extends Application {
+
+    //Instance Variables
+    private static SeatReservation seatReservation;
+
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("Seat Reservation Application");
+        SeatReservation seatReservation = new SeatReservation();
 
+
+
+        stage.setTitle("Seat Reservation Application");
         Label fieldLabels = new Label("test");
         Scene scene = new Scene(buildBorder(),480, 400);
         stage.setScene(scene);
@@ -68,8 +77,22 @@ public class SeatReservationApplication extends Application {
         CheckBox travelWithInfantField = new CheckBox();
         TextField numberOfBaggageField = new TextField();
 
-        //This field can not be edited
+        //This field can not be edited and should only return value
         TextField numberOfPassengersField = new TextField();
+        numberOfPassengersField.setEditable(false);
+        numberOfPassengersField.setTextFormatter(new TextFormatter<>(new StringConverter<Integer>() {
+            @Override
+            public String toString(Integer object) {
+                return "1";
+            }
+
+            @Override
+            public Integer fromString(String string) {
+                return 1;
+            }
+        }));
+
+        //Create the VBox
         VBox iVarFieldVBox = new VBox(11, flightDesignatorField, flightDatePicker, firstNameField, lastNameField, travelWithInfantField, numberOfBaggageField, numberOfPassengersField);
         iVarFieldVBox.setPadding(new Insets(25,12.5,25,12.5));
         return iVarFieldVBox;
@@ -84,7 +107,20 @@ public class SeatReservationApplication extends Application {
         return anchorPane;
     }
 
+    private static void setSeatReservation(SeatReservation seatReservation) {
+        seatReservation.setFlightDesignator("null");
+        seatReservation.setFlightDate(null);
+        seatReservation.setFirstName("null");
+        seatReservation.setLastName("null");
+        seatReservation.setNumberOfBags(0);
+    }
+    //private updateUI(){
+    //    flightDesignatorField.setText(seatReservation.getFlightDesignator());
+    //    return
+    //}
     public static void main(String[] args) {
         launch();
     }
 }
+
+
