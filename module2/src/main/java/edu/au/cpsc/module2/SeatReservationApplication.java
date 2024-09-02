@@ -4,10 +4,13 @@ import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import org.w3c.dom.Text;
+
 import java.io.IOException;
 
 import javafx.scene.Group;
@@ -16,33 +19,49 @@ import javafx.scene.Group;
 public class SeatReservationApplication extends Application {
 
     //Instance Variables
-    private static SeatReservation seatReservation;
-
+    public SeatReservation seatReservation;
+    private TextField flightDesignatorField;
+    private DatePicker flightDatePicker;
+    private TextField firstNameField;
+    private TextField lastNameField ;
+    private CheckBox travelWithInfantField;
+    private TextField numberOfBaggageField;
+    private TextField numberOfPassengersField;
     @Override
     public void start(Stage stage) throws IOException {
 
         //Create Instance Variable with info
-        SeatReservation seatReservation = new SeatReservation();
-
+        SeatReservation srObj = new SeatReservation();
+        srObj.setFlightDesignator("null");
+        srObj.setFlightDate(null);
+        srObj.setFirstName("null");
+        srObj.setLastName("null");
+        srObj.setNumberOfBags(0);
+        srObj.makeNotFlyingWithInfant(false);
 
         stage.setTitle("Seat Reservation Application");
-        Label fieldLabels = new Label("test");
         Group centerPane = new Group(groupGrid());
         Scene scene = new Scene(buildBorder(),480, 400);
         stage.setScene(scene);
 
-        //updateUI();
+        updateUI();
         stage.show();
     }
 
-    public static SeatReservation getSeatReservation() {
-        seatReservation.setFlightDesignator("null");
-        seatReservation.setFlightDate(null);
-        seatReservation.setFirstName("null");
-        seatReservation.setLastName("null");
-        seatReservation.setNumberOfBags(0);
-        return seatReservation;
-    }
+   private void updateUI(){
+//        Label flightDesignatorField = new Label();
+//        Label flightDatePicker = new Label();
+//        Label firstNameLabel = new Label();
+//        Label lastNameLabel = new Label();
+//        Label travelWithInfantLabel = new Label();
+//        Label numberOfBaggageLabel = new Label();
+        flightDesignatorField.setText(seatReservation.getFlightDesignator());
+        flightDatePicker.setValue(seatReservation.getFlightDate());
+        firstNameField.setText(seatReservation.getFirstName());
+        lastNameField.setText(seatReservation.getLastName());
+        travelWithInfantField.setSelected(seatReservation.isFlyingWithInfant());
+        numberOfBaggageField.setText(Integer.toString(seatReservation.getNumberOfBags()));
+   }
 
 
     private BorderPane buildBorder(){
@@ -73,7 +92,6 @@ public class SeatReservationApplication extends Application {
         VBox iVarTextLabels = new VBox(20 );
         iVarTextLabels.getChildren().addAll(flightDesignatorText, flightDateText, firstNameText, lastNameText, travelWithInfantText, numberOfBaggageText, numberOfPassengersText);
         iVarTextLabels.setPadding(new Insets(25,12.5,25,12.5));
-        //Vbox.setAlignment(Pos.Left)
         return iVarTextLabels;
     }
 
@@ -86,11 +104,10 @@ public class SeatReservationApplication extends Application {
         CheckBox travelWithInfantField = new CheckBox();
         TextField numberOfBaggageField = new TextField();
 
-        //Actions
-        flightDesignatorField.setOnAction(event -> {
-            String text = flightDesignatorField.getText();
-        });
-        
+        //
+
+        //travelWithInfantField.isSelected(true);
+
 
         //This field can not be edited and should only return value
         TextField numberOfPassengersField = new TextField();
@@ -107,6 +124,7 @@ public class SeatReservationApplication extends Application {
             }
         }));
 
+        boolean isSelected = travelWithInfantField.isSelected();
 
         //Create the VBox
         VBox iVarFieldVBox = new VBox(11);
@@ -131,30 +149,23 @@ public class SeatReservationApplication extends Application {
         return anchorPane;
     }
 
-//    //Events
-//    public void flightDesignatorFieldParse(){
-//        flightDesignatorField.getText();
-//    }
-//
-//    public void checkedBox(){
-//        if (travelWithInfantField.isSelected()) {
-//            seatReservation.makeFlyingWithInfant();
-//        }
-//        else{
-//            seatReservation.makeNotFlyingWithInfant();
-//        }
-//    }
+
+
     public void saveButton(){
         System.out.println("Okay");
-//        seatReservation.setFlightDesignator(flightDesignatorField.getText());
-//        seatReservation.setFlightDate();
-//        seatReservation.setFirstName();
-//        seatReservation.setLastName();
-//        seatReservation.setNumberOfBags();
-//        seatReservation.isFlyingWithInfant();
-  }
+        //Add SeatReservation Setters
+//        srObj.setFlightDesignator("null");
+//        srObj.setFlightDate(null);
+//        srObj.setFirstName("null");
+//        srObj.setLastName("null");
+//        srObj.setNumberOfBags(0);
+//        srObj.isFlyingWithInfant();
+
+
+    }
     public void cancelButton(){
         Platform.exit();
+        System.out.println("Cancel clicked");
     }
     public static void main(String[] args) {
         launch();

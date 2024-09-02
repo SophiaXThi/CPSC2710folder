@@ -87,11 +87,11 @@ public class SeatReservation {
         return flyingWithInfant;
     }
 
-    public void makeFlyingWithInfant() {
+    public void makeFlyingWithInfant(boolean flyingWithInfant) {
         this.flyingWithInfant = true;
     }
 
-    public void makeNotFlyingWithInfant() {
+    public void makeNotFlyingWithInfant(boolean flyingWithInfant) {
         this.flyingWithInfant = false;
     }
 
