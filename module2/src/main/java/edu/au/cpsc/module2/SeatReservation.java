@@ -75,7 +75,12 @@ public class SeatReservation {
     }
 
     public void setNumberOfBags(int nb) {
-        this.numberOfBags = nb;
+        if (nb < 1) {
+            throw new IllegalArgumentException("Number of bags cannot be less than 1");
+        }
+        else{
+            this.numberOfBags = nb;
+        }
     }
 
     public boolean isFlyingWithInfant() {
