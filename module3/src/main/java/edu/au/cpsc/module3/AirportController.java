@@ -3,7 +3,7 @@ package edu.au.cpsc.module3;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class AirportController {
     @FXML
     private Label welcomeText;
 
