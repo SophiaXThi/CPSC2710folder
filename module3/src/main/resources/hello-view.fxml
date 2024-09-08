@@ -30,6 +30,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label fx:id="identLabel" alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="ident" />
@@ -37,22 +38,24 @@
                   <Label fx:id="localCodeLabel" alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="local code" GridPane.rowIndex="2" />
                   <Label fx:id="aircraftTypeLabel" alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="aircraft type" GridPane.rowIndex="3" />
                   <Label fx:id="airportNameLabel" alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="airport name" GridPane.rowIndex="4" />
-                  <Label fx:id="continentLabel" alignment="CENTER" layoutX="10.0" layoutY="234.0" prefHeight="17.0" prefWidth="90.0" text="continent" GridPane.rowIndex="5" />
-                  <Label fx:id="countryLabel" alignment="CENTER" layoutX="10.0" layoutY="285.0" prefHeight="17.0" prefWidth="90.0" text="country" GridPane.rowIndex="6" />
-                  <Label fx:id="municipalityLabel" alignment="CENTER" layoutX="10.0" layoutY="383.0" prefHeight="17.0" prefWidth="90.0" text="municipality" GridPane.rowIndex="7" />
-                  <TextField fx:id="identField" GridPane.columnIndex="1" />
-                  <TextField fx:id="iataCodeField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="localCodeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="elevationLabel" alignment="CENTER" layoutX="10.0" layoutY="195.0" prefHeight="17.0" prefWidth="90.0" text="elevation" GridPane.rowIndex="5" />
+                  <Label fx:id="continentLabel" alignment="CENTER" layoutX="10.0" layoutY="234.0" prefHeight="17.0" prefWidth="90.0" text="continent" GridPane.rowIndex="6" />
+                  <Label fx:id="countryLabel" alignment="CENTER" layoutX="10.0" layoutY="285.0" prefHeight="17.0" prefWidth="90.0" text="country" GridPane.rowIndex="7" />
+                  <Label fx:id="municipalityLabel" alignment="CENTER" layoutX="10.0" layoutY="383.0" prefHeight="17.0" prefWidth="90.0" text="municipality" GridPane.rowIndex="8" />
+                  <TextField fx:id="identField" onAction="#handleSearch" GridPane.columnIndex="1" />
+                  <TextField fx:id="iataCodeField" onAction="#handleSearch" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="localCodeField" onAction="#handleSearch" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="aircraftTypeField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="airportNameField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="continentField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="countryField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField fx:id="municipalityField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="continentField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="countryField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="municipalityField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="elevationTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <ButtonBar fx:id="buttonBar" prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handlesSearchButtonAct" text="Search" />
+                <Button fx:id="searchButton" mnemonicParsing="false" text="Search" />
               </buttons>
             </ButtonBar>
          </children>
@@ -61,7 +64,7 @@
          </opaqueInsets>
       </VBox>
    </left>
-   <bottom>
-      <WebView fx:id="mapViewer" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </bottom>
+   <center>
+      <WebView nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
