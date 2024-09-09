@@ -143,54 +143,42 @@ public class Airport {
         if (inputStream == null) {
             // In case the file doesn't show up
             throw new FileNotFoundException(csvFilePath);
-            }
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"))) {
-                String line;
-                reader.readLine(); // Skip the header line
-
-                while ((line = reader.readLine()) != null) {
-                    String[] fields = line.split(",");
-
-                    if (fields.length >= 12) { // Ensure the length is correct
-                        Airport airport = new Airport();
-                        airport.setIdent(fields[0]);
-                        airport.setAircraftType(fields[1]);
-                        airport.setAirportName(fields[2]);
-                        airport.setElevationFt(fields[3].isEmpty() ? null : Integer.parseInt(fields[3]));
-                        airport.setContinent(fields[4]);
-                        airport.setCountry(fields[5]);
-                        airport.setRegion(fields[6]);
-                        airport.setMunicipality(fields[7].isEmpty() ? null : fields[7]);
-                        airport.setGpsCode(fields[8].isEmpty() ? null : fields[8]);
-                        airport.setIataCode(fields[9].isEmpty() ? null : fields[9]);
-                        airport.setLocalCode(fields[10].isEmpty() ? null : fields[10]);
-
-                        // Parse latitude and longitude from the last two columns
-                        try {
-                            String[] coordinates = fields[11].split(",");
-                            if (coordinates.length == 2) {
-                                airport.setLatitudeCoordinates(Double.parseDouble(coordinates[0]));
-                                airport.setLongitudeCoordinates(Double.parseDouble(coordinates[1]));
-                            } else {
-                                airport.setLatitudeCoordinates(null);
-                                airport.setLongitudeCoordinates(null);
-                            }
-                        } catch (NumberFormatException e) {
-                            airport.setLatitudeCoordinates(null);
-                            airport.setLongitudeCoordinates(null);
-                        }
-
-                        airports.add(airport);
-                    }
-                }
-            }
-            return airports;
-
         }
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"))) {
+            String line;
+            reader.readLine(); // Skip the header line
 
-    @Override
-    public String toString() {
-        return "Airport{" + "ident='" + ident + '\'' + ", iataCode='" + iataCode + '\'' + ", localCode='" + localCode + '\'' + ", aircraftType='" + aircraftType + '\'' + ", aircraftName='" + airportName + '\'' + ", elevationFt=" + elevationFt + ", country='" + country + '\'' + ", continent='" + continent + '\'' + ", municipality='" + municipality + '\'' + ", latitude=" + latitudeCoordinates + ", longitude=" + longitudeCoordinates + '}';
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                Airport airport = searchAirport(fields);
+
+                airports.add(airport);
+            }
+            reader.close();
+        } catch (IOException e) {
+            throw new IOException(e);
+        }
+        return airports;
     }
-}
+            // Inner class so it can be accessible by the main class
+            // Checked the file and there were columns with empty rows. Just added to deal with nulls regardless of columns
+            public static Airport searchAirport(String[] fields){
+                Airport airport = new Airport();
+                airport.setIdent(fields[0].isEmpty() ? null : fields[0]);
+                airport.setAircraftType(fields[1].isEmpty() ? null : fields[1]);
+                airport.setAirportName(fields[2].isEmpty() ? null : fields[2]);
+                airport.setElevationFt(fields[3].isEmpty() ? null : Integer.parseInt(fields[3]));
+                airport.setContinent(fields[4].isEmpty() ? null : fields[4]);
+                airport.setCountry(fields[5].isEmpty() ? null : fields[5]);
+                airport.setRegion(fields[6].isEmpty() ? null : fields[6]);
+                airport.setMunicipality(fields[7].isEmpty() ? null : fields[7]);
+                airport.setGpsCode(fields[8].isEmpty() ? null : fields[8]);
+                airport.setIataCode(fields[9].isEmpty() ? null : fields[9]);
+                airport.setLocalCode(fields[10].isEmpty() ? null : fields[10]);
+                airport.setLatitudeCoordinates(fields[11].isEmpty() ? 0.0 : Double.parseDouble(fields[11]));
+                airport.setLongitudeCoordinates(fields[12].isEmpty() ? 0.0 : Double.parseDouble(fields[12]));
+
+                return airport;
+            }
+        }
 

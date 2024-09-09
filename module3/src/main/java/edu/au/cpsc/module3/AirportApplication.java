@@ -19,11 +19,7 @@ public class AirportApplication extends Application {
         BorderPane root = fxmlLoader.load();
 
         // Create the scene with the loaded layout
-        Scene scene = new Scene(root, 960, 640); // Set initial size
-        stage.setMinWidth(800);
-        stage.setMinHeight(640);
-        stage.show();
-
+        Scene scene = new Scene(root); // Set initial size
          // Set the scene on the stage
         stage.setScene(scene);
         stage.setTitle("Airport Application");

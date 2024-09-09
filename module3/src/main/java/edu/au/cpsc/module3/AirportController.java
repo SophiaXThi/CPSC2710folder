@@ -17,6 +17,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static edu.au.cpsc.module3.Airport.searchAirport;
+
 
 public class AirportController implements Initializable {
 
@@ -75,13 +77,16 @@ public class AirportController implements Initializable {
     private TextField continentField;
 
     @FXML
-    private Label continentLabel;
+    private Label regionLabel;
 
     @FXML
     private TextField countryField;
 
     @FXML
     private Label countryLabel;
+
+    @FXML
+    private TextField regionField;
 
     @FXML
     private TextField municipalityField;
@@ -117,6 +122,8 @@ public class AirportController implements Initializable {
         localCodeField.setOnAction(event -> handleSearch());
         searchButton.setOnAction(event -> handlesSearchButtonAct());
 
+        WebEngine webEngine = mapViewer.getEngine();
+        webEngine.load("https://www.windy.com/");
     }
 
     public void handleSearch() {
@@ -124,32 +131,25 @@ public class AirportController implements Initializable {
         String ident = identField.getText();
         String iataCode = iataCodeField.getText();
         String localCode = localCodeField.getText();
-
         Airport findAirport = null;
-
         // Rule is it goes by the first EMPTY field
         for (Airport airport : airports) {
-            if (!ident.isEmpty()){
-                findAirport = airports.stream().filter(a -> a.getIdent().equalsIgnoreCase(ident)).findFirst().orElse(null);
+            if (!ident.isEmpty() && airport.getIdent().equalsIgnoreCase(ident)) {
+                updateFields(airport);
                 break;
         }
-            else if (!iataCode.isEmpty()){
-                findAirport = airports.stream().filter(a -> a.getIdent().equalsIgnoreCase(iataCode)).findFirst().orElse(null);
+            else if (!iataCode.isEmpty() && airport.getIataCode().equalsIgnoreCase(iataCode)){
+                updateFields(airport);
+                System.out.println("TroubleHere 2");
                 break;
             }
-            else if (!localCode.isEmpty()){
-                findAirport = airports.stream().filter(a -> a.getLocalCode().equalsIgnoreCase(localCode)).findFirst().orElse(null);
+            else if (!localCode.isEmpty()&& airport.getLocalCode().equalsIgnoreCase(localCode)){
+                updateFields(airport);
+                System.out.println("TroubleHere 3");
                 break;
             }
-
             // Update the fields and map. Make sure to check the lat and long to ensure it is correct
-            if (findAirport != null) {
-                updateFields(findAirport);
-                updateMapView(findAirport);
-            }
-            else {
-                System.out.println("No airport found");
-            }
+            System.out.println("No airport found");
         }
     }
 
@@ -161,22 +161,28 @@ public class AirportController implements Initializable {
     }
 
     public void updateFields(Airport airport) {
-        identField.setText(airport.getIdent());
-        iataCodeField.setText(airport.getIataCode());
-        localCodeField.setText(airport.getLocalCode());
-        aircraftTypeField.setText(airport.getAircraftType());
-        airportNameField.setText(airport.getAirportName());
-        elevationTextField.setText(String.valueOf(airport.getElevationFt()));
-        continentField.setText(airport.getContinent());
-        countryField.setText(airport.getCountry());
-        continentField.setText(airport.getContinent());
-        municipalityField.setText(airport.getMunicipality());
+
+        //Looking through the CSV there are many rows
+        identField.setText(airport.getIdent() != null ? airport.getIdent() : "");
+        iataCodeField.setText(airport.getIataCode() != null ? airport.getIataCode() : "");
+        localCodeField.setText(airport.getLocalCode() != null ? airport.getLocalCode() : "");
+
+
+        //Returns the non-editable
+        aircraftTypeField.setText(airport.getAircraftType() != null ? airport.getAircraftType() : "");
+        airportNameField.setText(airport.getAirportName() != null ? airport.getAirportName() : "");
+        elevationTextField.setText(String.valueOf(airport.getElevationFt() != null ? airport.getElevationFt() : ""));
+        //continentField.setText(airport.getContinent() != null ? airport.getContinent() : "");
+        countryField.setText(airport.getCountry() != null ? airport.getCountry() : "");
+        regionField.setText(airport.getRegion() != null ? airport.getRegion() : "");
+        municipalityField.setText(airport.getMunicipality() != null ? airport.getMunicipality() : "");
     }
     public void updateMapView(Airport airport) {
         WebEngine webEngine = mapViewer.getEngine();
         String latitudeCoordinates = String.valueOf(airport.getLatitudeCoordinates());
         String longitudeCoordinates = String.valueOf(airport.getLongitudeCoordinates());
-        String webURL = String.format("https://www.windy.com/?%s,%s,12", latitudeCoordinates, longitudeCoordinates);
+        String webURL = "https://www.windy.com/";
         webEngine.load(webURL);
+
     }
 }
