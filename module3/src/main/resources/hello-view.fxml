@@ -50,22 +50,19 @@
                   <Label fx:id="countryLabel" alignment="CENTER" layoutX="10.0" layoutY="234.0" prefHeight="17.0" prefWidth="90.0" text="country" GridPane.rowIndex="6" />
                   <Label fx:id="regionLabel" alignment="CENTER" layoutX="10.0" layoutY="285.0" prefHeight="17.0" prefWidth="90.0" text="region" GridPane.rowIndex="7" />
                   <Label fx:id="municipalityLabel" alignment="CENTER" layoutX="10.0" layoutY="383.0" prefHeight="17.0" prefWidth="90.0" text="municipality" GridPane.rowIndex="8" />
-                  <TextField fx:id="identField" onAction="#handleSearch" GridPane.columnIndex="1" />
+                  <TextField fx:id="identField" onAction="#handleSearch" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                   <TextField fx:id="iataCodeField" onAction="#handleSearch" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="localCodeField" onAction="#handleSearch" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="aircraftTypeField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="airportNameField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="elevationTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="countryField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <TextField fx:id="regionField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <TextField fx:id="municipalityField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <TextField fx:id="elevationTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" text="Search" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                </children>
             </GridPane>
-            <ButtonBar fx:id="buttonBar" prefHeight="40.0" prefWidth="200.0">
-              <buttons>
-                <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Search" />
-              </buttons>
-            </ButtonBar>
+            <ButtonBar fx:id="buttonBar" prefHeight="40.0" prefWidth="200.0" />
          </children>
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" top="10.0" />

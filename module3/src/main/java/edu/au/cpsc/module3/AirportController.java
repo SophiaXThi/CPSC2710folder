@@ -23,7 +23,7 @@ import static edu.au.cpsc.module3.Airport.searchAirport;
 public class AirportController implements Initializable {
 
     // Don't forget to call in the Airport Class
-    public List<Airport> airports;
+    public List<Airport> airports;;
 
     // Do I need to pull in the labels?
     @FXML
@@ -43,59 +43,29 @@ public class AirportController implements Initializable {
     private TextField identField;
 
     @FXML
-    private Label iataLabel;
-
-    @FXML
     private TextField iataCodeField;
 
     @FXML
     private TextField localCodeField;
-
-    @FXML
-    private Label localCodeLabel;
 
     // Uneditable fields
     @FXML
     private TextField aircraftTypeField;
 
     @FXML
-    private Label aircraftTypeLabel;
-
-    @FXML
     private TextField airportNameField;
-
-    @FXML
-    private Label airportNameLabel;
 
     @FXML
     private TextField elevationTextField;
 
     @FXML
-    private Label elevationLabel;
-
-    @FXML
-    private TextField continentField;
-
-    @FXML
-    private Label regionLabel;
-
-    @FXML
     private TextField countryField;
-
-    @FXML
-    private Label countryLabel;
 
     @FXML
     private TextField regionField;
 
     @FXML
     private TextField municipalityField;
-
-    @FXML
-    private Label municipalityLabel;
-
-    @FXML
-    private ButtonBar buttonBar;
 
     @FXML
     private Button searchButton;
@@ -134,16 +104,17 @@ public class AirportController implements Initializable {
         Airport findAirport = null;
         // Rule is it goes by the first EMPTY field
         for (Airport airport : airports) {
-            if (!ident.isEmpty() && airport.getIdent().equalsIgnoreCase(ident)) {
+            if (airport.getIdent().equalsIgnoreCase(ident)) {
                 updateFields(airport);
+                System.out.println(airport.getMunicipality());
                 break;
         }
-            else if (!iataCode.isEmpty() && airport.getIataCode().equalsIgnoreCase(iataCode)){
+            else if (airport.getIataCode().equalsIgnoreCase(iataCode)){
                 updateFields(airport);
-                System.out.println("TroubleHere 2");
+
                 break;
             }
-            else if (!localCode.isEmpty()&& airport.getLocalCode().equalsIgnoreCase(localCode)){
+            else if (airport.getLocalCode().equalsIgnoreCase(localCode)){
                 updateFields(airport);
                 System.out.println("TroubleHere 3");
                 break;
@@ -151,6 +122,7 @@ public class AirportController implements Initializable {
             // Update the fields and map. Make sure to check the lat and long to ensure it is correct
             System.out.println("No airport found");
         }
+
     }
 
 
@@ -158,6 +130,14 @@ public class AirportController implements Initializable {
     public void handlesSearchButtonAct(){
         handleSearch();
         System.out.println("Search button pressed");
+    }
+
+    public void clearSearch(){
+        if(airports !=null){
+            identField.clear();
+            iataCodeField.clear();
+            localCodeField.clear();
+        }
     }
 
     public void updateFields(Airport airport) {
@@ -176,6 +156,10 @@ public class AirportController implements Initializable {
         countryField.setText(airport.getCountry() != null ? airport.getCountry() : "");
         regionField.setText(airport.getRegion() != null ? airport.getRegion() : "");
         municipalityField.setText(airport.getMunicipality() != null ? airport.getMunicipality() : "");
+
+        WebEngine webEngine = mapViewer.getEngine();
+        String webURL = "https://www.windy.com/?" + airport.getLongitudeCoordinates() + "," + airport.getLatitudeCoordinates() + ",12";
+        webEngine.load(webURL);
     }
     public void updateMapView(Airport airport) {
         WebEngine webEngine = mapViewer.getEngine();
