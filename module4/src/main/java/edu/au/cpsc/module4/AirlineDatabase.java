@@ -1,24 +1,41 @@
 package edu.au.cpsc.module4;
 
-public class AirlineDatabase {
+import java.io.Serializable;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Objects;
 
+public class AirlineDatabase implements Serializable {
+
+    public List<ScheduledFlight> scheduledFlights;
     // Methods
-    getScheduledFlights(){
 
+    public AirlineDatabase() {
+        scheduledFlights = new ArrayList<>();
     }
 
-    addScheduledFlight(ScheduledFlight sf) {
-
+    public List<ScheduledFlight> getScheduledFlights(){
+        return scheduledFlights;
     }
 
-    removeScheduledFlight(ScheduledFlight sf){
-
+    public void addScheduledFlight(ScheduledFlight sf) {
+        scheduledFlights.add(sf);
     }
 
-    updateScheduleFlight(ScheduledFlight sf){
-
+    public void removeScheduledFlight(ScheduledFlight sf){
+        scheduledFlights.remove(sf);
     }
 
-
-
+    public void updateScheduledFlight(ScheduledFlight sf) {
+        if (sf == null) {
+            throw new IllegalArgumentException("Scheduled flight cannot be null");
+        }
+        // Check if flight exists before updating
+        if (!scheduledFlights.contains(sf)) {
+            throw new IllegalArgumentException("Scheduled flight does not exist");
+        }
+        // Remove the old flight and add the updated one
+        scheduledFlights.remove(sf);
+        scheduledFlights.add(sf);
+    }
 }

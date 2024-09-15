@@ -1,7 +1,11 @@
 package edu.au.cpsc.module4;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 
 public class ScheduledFlight {
 
@@ -11,7 +15,8 @@ public class ScheduledFlight {
     private LocalTime departureTime;
     private String arrivalAirportIdent;
     private LocalTime arrivalTime;
-    private HashSet daysOfWeek;
+    private HashSet<DayOfWeek> daysOfWeek;
+
 
     //Getters and Setters
     public String getFlightDesignator() {
@@ -21,10 +26,11 @@ public class ScheduledFlight {
     public void setFlightDesignator(String flightDesignator) {
 
         // This String can NOT be null or empty
-        if(flightDesignator == null||flightDesignator.isEmpty()) {
+        if (flightDesignator == null) {
             throw new IllegalArgumentException("Flight designator cannot be null or empty");
+        } else {
+            this.flightDesignator = flightDesignator;
         }
-        this.flightDesignator = flightDesignator;
     }
 
     public String getDepartureAirportIdent() {
@@ -32,10 +38,11 @@ public class ScheduledFlight {
     }
 
     public void setDepartureAirportIdent(String departureAirportIdent) {
-        if(departureAirportIdent == null||departureAirportIdent.isEmpty()) {
-            throw new IllegalArgumentException("Departure airport ident cannot be null or empty");
+        if (departureAirportIdent == null) {
+            throw new IllegalArgumentException("Departure airport ident cannot be null");
+        } else {
+            this.departureAirportIdent = departureAirportIdent;
         }
-        this.departureAirportIdent = departureAirportIdent;
     }
 
     public LocalTime getDepartureTime() {
@@ -43,10 +50,11 @@ public class ScheduledFlight {
     }
 
     public void setDepartureTime(LocalTime departureTime) {
-        if(departureTime == null) {
+        if (departureTime == null) {
             throw new IllegalArgumentException("Departure time cannot be null");
+        } else {
+            this.departureTime = departureTime;
         }
-        this.departureTime = departureTime;
     }
 
     public String getArrivalAirportIdent() {
@@ -54,10 +62,11 @@ public class ScheduledFlight {
     }
 
     public void setArrivalAirportIdent(String arrivalAirportIdent) {
-        if(arrivalAirportIdent == null||arrivalAirportIdent.isEmpty()) {
-            throw new IllegalArgumentException("Arrival airport ident cannot be null or empty");
+        if (arrivalAirportIdent == null) {
+            throw new IllegalArgumentException("Arrival airport ident cannot be null");
+        } else {
+            this.arrivalAirportIdent = arrivalAirportIdent;
         }
-        this.arrivalAirportIdent = arrivalAirportIdent;
     }
 
     public LocalTime getArrivalTime() {
@@ -65,32 +74,22 @@ public class ScheduledFlight {
     }
 
     public void setArrivalTime(LocalTime arrivalTime) {
-        if(arrivalTime == null) {
+        if (arrivalTime == null) {
             throw new IllegalArgumentException("Arrival time cannot be null");
+        } else {
+            this.arrivalTime = arrivalTime;
         }
-        this.arrivalTime = arrivalTime;
     }
 
-    public HashSet getDaysOfWeek() {
+    public HashSet<DayOfWeek> getDaysOfWeek() {
         return daysOfWeek;
     }
 
-    public void setDaysOfWeek(HashSet daysOfWeek) {
-        if(daysOfWeek == null||daysOfWeek.isEmpty()) {
+    public void setDaysOfWeek(HashSet<DayOfWeek> daysOfWeek) {
+        if (daysOfWeek == null) {
             throw new IllegalArgumentException("Day of week cannot be null");
+        } else {
+            this.daysOfWeek = new HashSet<>(daysOfWeek); // Ensure it's a HashSet
         }
-        this.daysOfWeek = daysOfWeek;
-    }
-
-    @Override
-    public String toString() {
-        return "ScheduledFlight{" +
-                "flightDesignator='" + flightDesignator + '\'' +
-                ", departureAirportIdent='" + departureAirportIdent + '\'' +
-                ", departureTime=" + departureTime +
-                ", arrivalAirportIdent='" + arrivalAirportIdent + '\'' +
-                ", arrivalTime=" + arrivalTime +
-                ", daysOfWeek=" + daysOfWeek +
-                '}';
     }
 }
