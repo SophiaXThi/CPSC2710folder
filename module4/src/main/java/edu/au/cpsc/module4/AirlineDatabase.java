@@ -27,20 +27,5 @@ public class AirlineDatabase implements Serializable {
     }
 
     public void updateScheduledFlight(ScheduledFlight sf) {
-        if (sf == null) {
-            throw new IllegalArgumentException("Scheduled flight cannot be null");
-        }
-        // Check if flight exists before updating
-        if (scheduledFlights.contains(sf)) {
-            throw new IllegalArgumentException("Scheduled flight already exist");
-        }
-        // Remove the old flight and add the updated one
-        for (int i = 0; i < scheduledFlights.size(); i++) {
-            if (Objects.equals(scheduledFlights.get(i).getFlightDesignator(), sf.getFlightDesignator())) {
-                scheduledFlights.set(i, sf);  // Update the existing flight
-                return;
-            }
-        }
-        throw new IllegalArgumentException("Scheduled flight does not exist");
     }
 }

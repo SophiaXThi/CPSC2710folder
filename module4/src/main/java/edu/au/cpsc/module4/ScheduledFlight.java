@@ -17,6 +17,9 @@ public class ScheduledFlight {
     private LocalTime arrivalTime;
     private HashSet<DayOfWeek> daysOfWeek;
 
+    public ScheduledFlight(String s, String s1, Object o, String s2, Object o1, HashSet<String> daysOfWeek) {
+    }
+
 
     //Getters and Setters
     public String getFlightDesignator() {
@@ -82,8 +85,10 @@ public class ScheduledFlight {
     }
 
     public HashSet<DayOfWeek> getDaysOfWeek() {
-        return daysOfWeek;
+        // Days of the week don't change
+        return new HashSet<>(daysOfWeek);
     }
+
 
     public void setDaysOfWeek(HashSet<DayOfWeek> daysOfWeek) {
         if (daysOfWeek == null) {
@@ -91,5 +96,33 @@ public class ScheduledFlight {
         } else {
             this.daysOfWeek = new HashSet<>(daysOfWeek); // Ensure it's a HashSet
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof ScheduledFlight scheduledFlight)) {
+            return false;
+        }
+        if (!Objects.equals(flightDesignator, scheduledFlight.flightDesignator)) {
+            return false;
+        }
+        if (!Objects.equals(departureAirportIdent, scheduledFlight.departureAirportIdent)) {
+            return false;
+        }
+        if (!Objects.equals(arrivalAirportIdent, scheduledFlight.arrivalAirportIdent)) {
+            return false;
+        }
+        return Objects.equals(daysOfWeek, scheduledFlight.daysOfWeek);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = flightDesignator != null ? flightDesignator.hashCode() : 0;
+        result = 31 * result + (departureAirportIdent != null ? departureAirportIdent.hashCode() : 0);
+        result = 31 * result + (arrivalAirportIdent != null ? arrivalAirportIdent.hashCode() : 0);
+        return result;
     }
 }
