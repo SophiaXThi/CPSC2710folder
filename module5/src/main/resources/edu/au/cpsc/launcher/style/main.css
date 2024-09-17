@@ -1,0 +1,39 @@
+
+@font-face {
+    font-family: "Tiny5";
+    src: url("font/Tiny5-Regular.ttf") format("truetype");
+}
+
+.button {
+    -fx-text-fill: cyan;
+    -fx-font-family: "Tiny5";
+    -fx-font-size: 18px;
+    -fx-opacity: 0.80;
+    -fx-background-size: 30px 30px;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+#airports-btn {
+    -fx-background-image: url("images/pepe.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+#seat-reservation-btn {
+    -fx-background-image: url("images/beaker.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+#flight-schedule-btn {
+    -fx-background-image: url("images/Beaker_and_Wacky_WallWalkers.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+#aircraft-btn {
+    -fx-background-image: url("images/pepe_donuts.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}

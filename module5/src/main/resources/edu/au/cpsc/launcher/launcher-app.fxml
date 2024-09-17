@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="10" vgap="10" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.au.cpsc.launcher.LauncherController">
+    <Button id="airports-btn" prefHeight="145.0" prefWidth="215.0" text="Airports" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <Button id="seat-reservation-btn" prefHeight="145.0" prefWidth="215.0" text="Seat Reservations" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <Button id="flight-schedule-btn" prefHeight="145.0" prefWidth="215.0" text="Flight Schedule" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Button id="aircraft-btn" prefHeight="145.0" prefWidth="215.0" text="Aircraft" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

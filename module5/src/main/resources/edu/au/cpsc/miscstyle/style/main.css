@@ -1,0 +1,51 @@
+BorderPane {
+    -fx-background-color: #dad7cd;
+}
+
+#foreground {
+    -fx-fill: #272838;
+}
+
+#highlight {
+    -fx-fill: #ff6b6b;
+}
+
+#accent {
+    -fx-fill: #7e7f9a;
+}
+
+#Rectangle {
+    -fx-stroke: rgb(70, 155, 75);
+    -fx-stroke-width: 5px;
+    -fx-stroke-type: inside;
+    -fx-fill: transparent;
+}
+
+#Circle {
+    -fx-fill: #7e7f9a;
+}
+
+.hyperlinks {
+    -fx-text-fill: #ff6b6b;
+    -fx-underline: true;
+}
+
+.hyperlinks:visited {
+    -fx-text-fill: #272838;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #ff6b6b
+}
+
+.combo-box .arrow {
+    -fx-background-color: white;
+}
+
+.check-box .box .mark{
+    -fx-background-color: #7e7f9a;
+}
+
+#button-row {
+    -fx-alignment: center-right;
+}
