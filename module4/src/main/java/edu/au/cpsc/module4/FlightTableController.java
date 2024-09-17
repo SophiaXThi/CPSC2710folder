@@ -35,7 +35,7 @@ public class FlightTableController {
         arrivalAirportIdentCol.setCellValueFactory(new PropertyValueFactory<>("arrivalAirportIdent"));
         daysOfWeekCol.setCellValueFactory(cellInfo -> {
             ScheduledFlight flight = cellInfo.getValue();
-            String sortedDays = flight.getDaysOfWeek().stream().map(Enum::toString).collect(Collectors.joining(", "));
+            String sortedDays = flight.getDaysOfWeek().stream().map(Enum::toString).collect(Collectors.joining(","));
             return new SimpleStringProperty(sortedDays);
         });
         flightTableView.getSelectionModel().selectedItemProperty().addListener(c -> tableSelectionChanged());
