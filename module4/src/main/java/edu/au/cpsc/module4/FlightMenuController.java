@@ -93,6 +93,20 @@ public class FlightMenuController {
         }
     }
 
+    public void updateMenuAction() throws FileNotFoundException {
+        updateButtonAction();
+    }
+
+    @FXML
+    public void addMenuAction() throws FileNotFoundException {
+        addButtonAction();
+    }
+
+    @FXML
+    public void deleteMenuAction() throws FileNotFoundException {
+        removeButtonAction();
+    }
+
     @FXML
     public void quitButtonAction() {
         Platform.exit();
