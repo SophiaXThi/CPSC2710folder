@@ -4,31 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844e35f9-6285-4275-9f77-7a0f4e0f86e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/au/cpsc/launcher/LauncherApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/au/cpsc/launcher/LauncherController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/au/cpsc/miscstyle/Part1Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/au/cpsc/miscstyle/Part1Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/launcher-app.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/style/font/Tiny5-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/style/images/Beaker_and_Wacky_WallWalkers.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/style/images/beaker.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/style/images/pepe.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/style/images/pepe_donuts.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/style/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/miscstyle/part1.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/miscstyle/style/main.css" afterDir="false" />
+    <list default="true" id="844e35f9-6285-4275-9f77-7a0f4e0f86e4" name="Changes" comment="Module 5 stuff">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/style/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/style/main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "SophiaXThi"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/SophiaXThi/CPSC2710folder.git",
+    "accountId": "a0355edd-1fec-4475-a38b-a740ccef7c46"
+  }
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -122,11 +112,25 @@
       <option name="presentableId" value="Default" />
       <updated>1726913432662</updated>
       <workItem from="1726913433700" duration="8000" />
-      <workItem from="1726913474880" duration="16488000" />
+      <workItem from="1726913474880" duration="16906000" />
     </task>
+    <task id="LOCAL-00001" summary="Module 5 stuff">
+      <option name="closed" value="true" />
+      <created>1726972910732</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726972910732</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Button stuff" />
+    <MESSAGE value="Module 5 stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Module 5 stuff" />
   </component>
 </project>
