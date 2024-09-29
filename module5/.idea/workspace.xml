@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844e35f9-6285-4275-9f77-7a0f4e0f86e4" name="Changes" comment="Module 5 stuff">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/style/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/edu/au/cpsc/launcher/style/main.css" afterDir="false" />
-    </list>
+    <list default="true" id="844e35f9-6285-4275-9f77-7a0f4e0f86e4" name="Changes" comment="Module 5 stuff" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -112,7 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1726913432662</updated>
       <workItem from="1726913433700" duration="8000" />
-      <workItem from="1726913474880" duration="16906000" />
+      <workItem from="1726913474880" duration="16956000" />
     </task>
     <task id="LOCAL-00001" summary="Module 5 stuff">
       <option name="closed" value="true" />
@@ -122,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726972910732</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Module 5 stuff">
+      <option name="closed" value="true" />
+      <created>1726973418576</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726973418576</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
