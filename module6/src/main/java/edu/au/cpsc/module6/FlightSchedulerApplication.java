@@ -1,22 +1,20 @@
-package edu.au.cpsc.model;
+package edu.au.cpsc.module6;
+
+import edu.au.cpsc.model.SeatReservation;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
-import javafx.scene.control.*;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
-import javafx.scene.Group;
 
-
-public class SeatReservationApplication extends Application {
+public class FlightSchedulerApplication extends Application {
 
     //Instance Variables
     public SeatReservation seatReservation;
@@ -27,13 +25,15 @@ public class SeatReservationApplication extends Application {
     private CheckBox travelWithInfantField;
     private TextField numberOfBaggageField;
     private TextField numberOfPassengersField;
+    private Button saveButton;
 
     @Override
     public void start(Stage stage) throws IOException {
 
         //Create Instance Variable with info
         seatReservation = new SeatReservation(); // Use the instance variable
-
+        //Why do buttons cause me so many problems
+        saveButton = new Button("Save");
         // Initialize with valid values
         try {
             seatReservation.setFlightDesignator("null"); // Provide a valid flight designator
@@ -62,8 +62,17 @@ public class SeatReservationApplication extends Application {
         lastNameField.setText(seatReservation.getLastName());
         travelWithInfantField.setSelected(seatReservation.isFlyingWithInfant());
         numberOfBaggageField.setText(Integer.toString(seatReservation.getNumberOfBags()));
+
+        saveButton.setDisable(!isFormValid());
     }
 
+    private boolean isFormValid() {
+        return seatReservation.flightDesignatorValidProperty().get() &&
+                seatReservation.flightDateValidProperty().get() &&
+                seatReservation.firstNameValidProperty().get() &&
+                seatReservation.lastNameValidProperty().get() &&
+                seatReservation.numberOfBagsValidProperty().get();
+    }
 
     private BorderPane buildBorder() {
         BorderPane srBorderPane = new BorderPane();
