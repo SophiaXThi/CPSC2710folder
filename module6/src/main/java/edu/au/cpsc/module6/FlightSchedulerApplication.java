@@ -17,6 +17,7 @@ import java.time.LocalDate;
 
 public class FlightSchedulerApplication extends Application {
 
+    private SeatReservationUI seatReservationUI;
     private SeatReservation seatReservation;
     private TextField flightDesignatorField;
     private DatePicker flightDatePicker;
@@ -36,6 +37,7 @@ public class FlightSchedulerApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         seatReservation = new SeatReservation();
+        seatReservationUI = new SeatReservationUI();
         seatReservation.setFlightDesignator("null");
         seatReservation.setFlightDate(LocalDate.now());
         seatReservation.setFirstName("null");
@@ -63,6 +65,12 @@ public class FlightSchedulerApplication extends Application {
 
         validateInputs();
         updateButtonState();
+        updateInputStyles();
+    }
+
+    private void updateInputStyles() {
+        updateTextBackgroundStyle(flightDesignatorField, seatReservationUI.flightDesignatorValidProperty().get());
+        updateDateBackgroundStyle(flightDatePicker, seatReservationUI.flightDateValidProperty().get());
     }
 
     private BorderPane buildBorder() {

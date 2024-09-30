@@ -6,6 +6,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.time.LocalDate;
+
 public class SeatReservationUI {
     private final SimpleStringProperty flightDesignator = new SimpleStringProperty();
     private final SimpleStringProperty flightDate = new SimpleStringProperty();
@@ -77,4 +79,37 @@ public class SeatReservationUI {
                 && lastNameValid.get() && numberOfBagsValid.get();
     }
 
+    // Getters for boolean properties
+    public BooleanProperty flightDesignatorValidProperty() {
+        return flightDesignatorValid;
+    }
+
+    public BooleanProperty flightDateValidProperty() {
+        return flightDateValid;
+    }
+
+    public BooleanProperty firstNameValidProperty() {
+        return firstNameValid;
+    }
+
+    public BooleanProperty lastNameValidProperty() {
+        return lastNameValid;
+    }
+
+    // Validation methods
+    public void validateFlightDesignator(String value) {
+        flightDesignatorValid.set(!value.isEmpty());
+    }
+
+    public void validateFlightDate(LocalDate value) {
+        flightDateValid.set(value != null);
+    }
+
+    public void validateFirstName(String value) {
+        firstNameValid.set(!value.isEmpty());
+    }
+
+    public void validateLastName(String value) {
+        lastNameValid.set(!value.isEmpty());
+    }
 }
