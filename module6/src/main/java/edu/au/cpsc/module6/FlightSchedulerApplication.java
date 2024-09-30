@@ -69,8 +69,12 @@ public class FlightSchedulerApplication extends Application {
     }
 
     private void updateInputStyles() {
-        updateTextBackgroundStyle(flightDesignatorField, seatReservationUI.flightDesignatorValidProperty().get());
-        updateDateBackgroundStyle(flightDatePicker, seatReservationUI.flightDateValidProperty().get());
+        // Update the background based on the validity of each input
+        updateTextBackgroundStyle(flightDesignatorField, isFlightDesignatorValid.get());
+        updateDateBackgroundStyle(flightDatePicker, isFlightDateValid.get());
+        updateTextBackgroundStyle(firstNameField, isFirstNameValid.get());
+        updateTextBackgroundStyle(lastNameField, isLastNameValid.get());
+        updateTextBackgroundStyle(numberOfBaggageField, isNumberOfBaggageValid.get());
     }
 
     private BorderPane buildBorder() {
@@ -180,7 +184,7 @@ public class FlightSchedulerApplication extends Application {
 
     private void updateTextBackgroundStyle(TextField field, boolean isValid) {
         if (isValid) {
-            field.setStyle("");
+            field.setStyle("-fx-background-color: green");
         } else {
             field.setStyle("-fx-background-color: red");
         }
@@ -188,7 +192,7 @@ public class FlightSchedulerApplication extends Application {
 
     private void updateDateBackgroundStyle(DatePicker field, boolean isValid) {
         if (isValid) {
-            field.setStyle("");
+            field.setStyle("-fx-background-color: green");
         } else {
             field.setStyle("-fx-background-color: red");
         }
