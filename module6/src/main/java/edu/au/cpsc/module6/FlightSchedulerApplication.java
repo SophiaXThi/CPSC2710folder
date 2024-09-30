@@ -1,10 +1,12 @@
 package edu.au.cpsc.module6;
 
 import edu.au.cpsc.model.SeatReservation;
+import edu.au.cpsc.uimodel.SeatReservationUI;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -13,44 +15,40 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
-
 public class FlightSchedulerApplication extends Application {
 
-    //Instance Variables
-    public SeatReservation seatReservation;
+    private SeatReservation seatReservation;
     private TextField flightDesignatorField;
     private DatePicker flightDatePicker;
     private TextField firstNameField;
     private TextField lastNameField;
     private CheckBox travelWithInfantField;
     private TextField numberOfBaggageField;
-    private TextField numberOfPassengersField;
     private Button saveButton;
+
+    // Boolean properties for validation
+    private final SimpleBooleanProperty isFlightDesignatorValid = new SimpleBooleanProperty(true);
+    private final SimpleBooleanProperty isFlightDateValid = new SimpleBooleanProperty(true);
+    private final SimpleBooleanProperty isFirstNameValid = new SimpleBooleanProperty(true);
+    private final SimpleBooleanProperty isLastNameValid = new SimpleBooleanProperty(true);
+    private final SimpleBooleanProperty isNumberOfBaggageValid = new SimpleBooleanProperty(true);
 
     @Override
     public void start(Stage stage) throws IOException {
+        seatReservation = new SeatReservation();
+        seatReservation.setFlightDesignator("null");
+        seatReservation.setFlightDate(LocalDate.now());
+        seatReservation.setFirstName("null");
+        seatReservation.setLastName("null");
+        seatReservation.setNumberOfBags(0);
+        seatReservation.makeNotFlyingWithInfant();
 
-        //Create Instance Variable with info
-        seatReservation = new SeatReservation(); // Use the instance variable
-        //Why do buttons cause me so many problems
-        saveButton = new Button("Save");
-        // Initialize with valid values
-        try {
-            seatReservation.setFlightDesignator("null"); // Provide a valid flight designator
-            seatReservation.setFlightDate(LocalDate.now()); // Set a valid date
-            seatReservation.setFirstName("null"); // Example first name
-            seatReservation.setLastName("null"); // Example last name
-            seatReservation.setNumberOfBags(0); // Initial number of bags
-            seatReservation.makeNotFlyingWithInfant(); // Assuming no infant traveling
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error initializing SeatReservation: " + e.getMessage());
-            return; // Exit the start method to prevent further errors
-        }
         stage.setTitle("Seat Reservation Application");
-        Group centerPane = new Group(groupGrid());
-        Scene scene = new Scene(buildBorder(), 480, 400);
+        BorderPane srBorderPane = buildBorder();
+        Scene scene = new Scene(srBorderPane, 480, 400);
         stage.setScene(scene);
 
+        createButtonBar();
         updateUI();
         stage.show();
     }
@@ -63,15 +61,8 @@ public class FlightSchedulerApplication extends Application {
         travelWithInfantField.setSelected(seatReservation.isFlyingWithInfant());
         numberOfBaggageField.setText(Integer.toString(seatReservation.getNumberOfBags()));
 
-        saveButton.setDisable(!isFormValid());
-    }
-
-    private boolean isFormValid() {
-        return seatReservation.flightDesignatorValidProperty().get() &&
-                seatReservation.flightDateValidProperty().get() &&
-                seatReservation.firstNameValidProperty().get() &&
-                seatReservation.lastNameValidProperty().get() &&
-                seatReservation.numberOfBagsValidProperty().get();
+        validateInputs();
+        updateButtonState();
     }
 
     private BorderPane buildBorder() {
@@ -83,31 +74,6 @@ public class FlightSchedulerApplication extends Application {
 
     private GridPane groupGrid() {
         GridPane groupGrid = new GridPane();
-        Label label = new Label();
-        GridPane.setConstraints(label, 2, 1);
-        groupGrid.add(instVarLabel(), 0, 0);
-        groupGrid.add(instVarFieldFillVBox(), 1, 0);
-        groupGrid.add(createButtonBar(), 1, 1);
-        return groupGrid;
-    }
-
-    public VBox instVarLabel() {
-        //Label of all the instance variables
-        Label flightDesignatorText = new Label("Flight Designator");
-        Label flightDateText = new Label("Flight Date");
-        Label firstNameText = new Label("First Name");
-        Label lastNameText = new Label("Last Name");
-        Label travelWithInfantText = new Label("Travel With Infant");
-        Label numberOfBaggageText = new Label("Number of Baggage");
-        Label numberOfPassengersText = new Label("Number of Passengers");
-        VBox iVarTextLabels = new VBox(20);
-        iVarTextLabels.getChildren().addAll(flightDesignatorText, flightDateText, firstNameText, lastNameText, travelWithInfantText, numberOfBaggageText, numberOfPassengersText);
-        iVarTextLabels.setPadding(new Insets(25, 12.5, 25, 12.5));
-        return iVarTextLabels;
-    }
-
-    public VBox instVarFieldFillVBox() {
-        // Initialize instance variables
         flightDesignatorField = new TextField();
         flightDatePicker = new DatePicker();
         firstNameField = new TextField();
@@ -115,46 +81,68 @@ public class FlightSchedulerApplication extends Application {
         travelWithInfantField = new CheckBox();
         numberOfBaggageField = new TextField();
 
+        groupGrid.add(instVarLabel(), 0, 0);
+        groupGrid.add(instVarFieldFillVBox(), 1, 0);
+        groupGrid.add(createButtonBar(), 1, 1);
 
-        // Ensure that only numeric input is allowed in the baggage field
-        numberOfBaggageField.textProperty().addListener((obs, oldText, newText) -> {
-            // Allow only digits in the baggage field
-            if (!newText.matches("\\d*")) {
-                numberOfBaggageField.setText(newText.replaceAll("\\D", ""));
-            }
-        });
+        setListeners();
+        return groupGrid;
+    }
 
-        // Set up input bindings to the SeatReservation model
+    private void setListeners() {
         flightDesignatorField.textProperty().addListener((obs, oldText, newText) -> {
-            try {
-                seatReservation.setFlightDesignator(newText);
-            } catch (IllegalArgumentException e) {
-                // Handle invalid input, e.g., show an error message
-                System.out.println("Invalid flight designator: " + e.getMessage());
-            }
+            seatReservation.setFlightDesignator(newText);
+            isFlightDesignatorValid.set(!newText.isEmpty());
+            updateTextBackgroundStyle(flightDesignatorField, isFlightDesignatorValid.get());
         });
 
         flightDatePicker.valueProperty().addListener((obs, oldDate, newDate) -> {
             seatReservation.setFlightDate(newDate);
+            isFlightDateValid.set(newDate != null);
+            updateDateBackgroundStyle(flightDatePicker, isFlightDateValid.get());
         });
 
         firstNameField.textProperty().addListener((obs, oldText, newText) -> {
             seatReservation.setFirstName(newText);
+            isFirstNameValid.set(!newText.isEmpty());
+            updateTextBackgroundStyle(firstNameField, isFirstNameValid.get());
         });
 
         lastNameField.textProperty().addListener((obs, oldText, newText) -> {
             seatReservation.setLastName(newText);
+            isLastNameValid.set(!newText.isEmpty());
+            updateTextBackgroundStyle(lastNameField, isLastNameValid.get());
         });
 
         travelWithInfantField.selectedProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue) {
-                seatReservation.makeFlyingWithInfant(travelWithInfantField.isSelected());
-            } else {
-                seatReservation.makeNotFlyingWithInfant();
-            }
+            seatReservation.makeFlyingWithInfant(newValue);
         });
 
-        // Create the VBox to hold the fields
+        numberOfBaggageField.textProperty().addListener((obs, oldText, newText) -> {
+            if (!newText.matches("\\d*")) {
+                numberOfBaggageField.setText(newText.replaceAll("\\D", ""));
+            } else {
+                seatReservation.setNumberOfBags(newText.isEmpty() ? 0 : Integer.parseInt(newText));
+                isNumberOfBaggageValid.set(!newText.isEmpty());
+                updateTextBackgroundStyle(numberOfBaggageField, isNumberOfBaggageValid.get());
+            }
+        });
+    }
+
+    public VBox instVarLabel() {
+        Label flightDesignatorText = new Label("Flight Designator");
+        Label flightDateText = new Label("Flight Date");
+        Label firstNameText = new Label("First Name");
+        Label lastNameText = new Label("Last Name");
+        Label travelWithInfantText = new Label("Travel With Infant");
+        Label numberOfBaggageText = new Label("Number of Baggage");
+        VBox iVarTextLabels = new VBox(20);
+        iVarTextLabels.getChildren().addAll(flightDesignatorText, flightDateText, firstNameText, lastNameText, travelWithInfantText, numberOfBaggageText);
+        iVarTextLabels.setPadding(new Insets(25, 12.5, 25, 12.5));
+        return iVarTextLabels;
+    }
+
+    public VBox instVarFieldFillVBox() {
         VBox iVarFieldVBox = new VBox(11);
         iVarFieldVBox.getChildren().addAll(
                 flightDesignatorField,
@@ -165,17 +153,12 @@ public class FlightSchedulerApplication extends Application {
                 numberOfBaggageField
         );
         iVarFieldVBox.setPadding(new Insets(25, 12.5, 25, 12.5));
-
-        // Populate fields with current values from the model
-        updateUI();
-
         return iVarFieldVBox;
     }
 
-
     private AnchorPane createButtonBar() {
         Button cancelButton = new Button("Cancel");
-        Button saveButton = new Button("Save");
+        saveButton = new Button("Save");
 
         cancelButton.setOnAction(event -> cancelButton());
         saveButton.setOnAction(event -> saveButton());
@@ -187,6 +170,44 @@ public class FlightSchedulerApplication extends Application {
         return anchorPane;
     }
 
+    private void updateTextBackgroundStyle(TextField field, boolean isValid) {
+        if (isValid) {
+            field.setStyle("");
+        } else {
+            field.setStyle("-fx-background-color: red");
+        }
+    }
+
+    private void updateDateBackgroundStyle(DatePicker field, boolean isValid) {
+        if (isValid) {
+            field.setStyle("");
+        } else {
+            field.setStyle("-fx-background-color: red");
+        }
+    }
+
+    private void validateInputs() {
+        isFlightDesignatorValid.set(!flightDesignatorField.getText().isEmpty());
+        isFlightDateValid.set(flightDatePicker.getValue() != null);
+        isFirstNameValid.set(!firstNameField.getText().isEmpty());
+        isLastNameValid.set(!lastNameField.getText().isEmpty());
+        isNumberOfBaggageValid.set(!numberOfBaggageField.getText().isEmpty());
+    }
+
+    public void updateButtonState() {
+        saveButton.disableProperty().bind(Bindings.createBooleanBinding(
+                () -> !isFlightDesignatorValid.get() ||
+                        !isFlightDateValid.get() ||
+                        !isFirstNameValid.get() ||
+                        !isLastNameValid.get() ||
+                        !isNumberOfBaggageValid.get(),
+                isFlightDesignatorValid,
+                isFlightDateValid,
+                isFirstNameValid,
+                isLastNameValid,
+                isNumberOfBaggageValid
+        ));
+    }
 
     public void saveButton() {
         try {
@@ -194,7 +215,6 @@ public class FlightSchedulerApplication extends Application {
             seatReservation.setFlightDate(flightDatePicker.getValue());
             seatReservation.setFirstName(firstNameField.getText());
             seatReservation.setLastName(lastNameField.getText());
-
             seatReservation.setNumberOfBags(Integer.parseInt(numberOfBaggageField.getText()));
             seatReservation.makeFlyingWithInfant(travelWithInfantField.isSelected());
             System.out.println("Saved successfully!");
@@ -209,10 +229,8 @@ public class FlightSchedulerApplication extends Application {
     }
 
     public static void main(String[] args) {
-
         launch();
     }
 }
-
 
 

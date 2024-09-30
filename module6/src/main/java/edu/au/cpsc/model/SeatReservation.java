@@ -13,60 +13,6 @@ public class SeatReservation {
     private int numberOfBags;
     private boolean flyingWithInfant;
 
-    // Validation stuff
-    private BooleanProperty flightDesignatorValid = new SimpleBooleanProperty(true);
-    private BooleanProperty flightDateValid = new SimpleBooleanProperty(true);
-    private BooleanProperty firstNameValid = new SimpleBooleanProperty(true);
-    private BooleanProperty lastNameValid = new SimpleBooleanProperty(true);
-    private BooleanProperty numberOfBagsValid = new SimpleBooleanProperty(true);
-
-    //Getters for the validation stuff
-    public BooleanProperty flightDesignatorValidProperty() {
-        return flightDesignatorValid;
-    }
-    public BooleanProperty flightDateValidProperty() {
-        return flightDateValid;
-    }
-    public BooleanProperty firstNameValidProperty() {
-        return firstNameValid;
-    }
-    public BooleanProperty lastNameValidProperty() {
-        return lastNameValid;
-    }
-    public BooleanProperty numberOfBagsValidProperty() {
-        return numberOfBagsValid;
-    }
-    public void validateFlightDesignator(String flightDesignator) {
-        if (flightDesignator == null || flightDesignator.isEmpty()) {
-            flightDesignatorValid.set(false);
-        }else {
-            flightDesignatorValid.set(true);
-        }
-    }
-    public void validateFlightDate(String flightDate) {
-        if (flightDate == null || flightDate.isEmpty()) {
-            flightDateValid.set(false);
-        }
-        else {
-            flightDateValid.set(true);
-        }
-    }
-    public void validateFirstName(String firstName) {
-        if (firstName == null || firstName.isEmpty()) {
-            firstNameValid.set(false);
-        }
-        else {
-            firstNameValid.set(true);
-        }
-    }
-    public void validateLastName(String lastName) {
-        if (lastName == null || lastName.isEmpty()) {
-            lastNameValid.set(false);
-        }else {
-            lastNameValid.set(true);
-        }
-    }
-
     //Getters and Setters
     public String getFlightDesignator() {
         return flightDesignator;
@@ -138,7 +84,7 @@ public class SeatReservation {
     }
 
     public void makeFlyingWithInfant(boolean selected) {
-        this.flyingWithInfant = true;
+        this.flyingWithInfant = selected;
     }
 
     public void makeNotFlyingWithInfant() {
