@@ -57,6 +57,7 @@
             <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchSelectedFood" text="Search" />
             <Button fx:id="deleteBtn" mnemonicParsing="false" text="Delete" />
             <Button fx:id="quitBtn" mnemonicParsing="false" text="Quit" />
+            <Button fx:id="historyBtn" mnemonicParsing="false" text="History" />
          </buttons>
          <padding>
             <Insets right="10.0" />

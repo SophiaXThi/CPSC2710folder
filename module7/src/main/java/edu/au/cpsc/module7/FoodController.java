@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -32,6 +33,7 @@ public class FoodController {
     @FXML private Button searchBtn;
     @FXML private Button deleteBtn;
     @FXML private Button quitBtn;
+    @FXML private Button historyBtn;
 
     @FXML private MenuItem closeMenuItem;
     @FXML private MenuItem deleteMenuItem;
@@ -56,6 +58,7 @@ public class FoodController {
         searchBtn.setOnAction(event -> handleSearchButton());
         deleteBtn.setOnAction(event -> handleDelete());
         quitBtn.setOnAction(event -> quitApplication());
+        historyBtn.setOnAction(event -> showPastChoices());
 
         // Keyboard shortcuts
         closeMenuItem.setAccelerator(KeyCombination.keyCombination("Shortcut+Q"));
@@ -194,4 +197,20 @@ public class FoodController {
         }
     }
 
+    @FXML
+    private void showPastChoices() {
+        Stage pastChoicesStage = new Stage();
+        pastChoicesStage.setTitle("Past Food Choices");
+
+        ListView<String> listView = new ListView<>();
+        listView.getItems().addAll(selectedFoods); // Populate with past choices
+
+        Button closeButton = new Button("Close");
+        closeButton.setOnAction(e -> pastChoicesStage.close());
+
+        VBox layout = new VBox(10, listView, closeButton);
+        Scene scene = new Scene(layout, 300, 400);
+        pastChoicesStage.setScene(scene);
+        pastChoicesStage.show();
+    }
 }
