@@ -164,7 +164,10 @@ public class FoodController {
         + "Use the checkboxes to select your choices then click 'Pick' to randomly choose. "
         + "The chosen food will be displayed and if you select 'Search' a new window will pop up allowing you to google for restaurants in your area. "
         + "You can delete your choices by deselecting the checkboxes, selecting 'Delete', or going to the menu -> edit -> delete"
-        + "The search window can be closed at any time and new choices can be picked. ");
+        + "The search window can be closed at any time and new choices can be picked. "
+        + "Keyboard shortcuts: Ctrl+Q closes the app\n" +
+                "Ctrl+D deletes the choices\n" +
+                "Ctrl+A opens the about section\n");
         alert.showAndWait();
     }
 
