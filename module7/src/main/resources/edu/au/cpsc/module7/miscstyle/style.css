@@ -1,0 +1,108 @@
+@font-face {
+    font-family: "Tiny5";
+    src: url("font/Tiny5-Regular.ttf") format("truetype");
+}
+
+.button {
+    -fx-text-fill: black;
+    -fx-font-family: "Tiny5";
+    -fx-font-size: 12px;
+    -fx-background-size: 30px 30px;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+#foodVBox {
+    -fx-background-color: #597087;
+}
+
+.checkbox-bbq {
+    -fx-background-image: url("images/bbq_food.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-text-fill: gold;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 30px;
+    -fx-opacity: .75;
+}
+
+.checkbox-chinese {
+    -fx-background-image: url("images/chinese_food.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-text-fill: gold;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 30px;
+    -fx-opacity: .75;
+}
+
+.checkbox-fastfood {
+    -fx-background-image: url("images/fast_food.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-text-fill: gold;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 30px;
+    -fx-opacity: .75;
+}
+
+.checkbox-greek {
+    -fx-background-image: url("images/greek_food.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-text-fill: gold;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 30px;
+    -fx-opacity: .75;
+}
+
+.checkbox-indian {
+    -fx-background-image: url("images/indian_food.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-text-fill: gold;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 30px;
+    -fx-opacity: .75;
+}
+
+.checkbox-italian {
+    -fx-background-image: url("images/italian_food.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-text-fill: gold;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 30px;
+    -fx-opacity: .75;
+}
+
+.checkbox-japanese {
+    -fx-background-image: url("images/japanese_food.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-text-fill: gold;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 30px;
+    -fx-opacity: .75;
+}
+
+.checkbox-mexican {
+    -fx-background-image: url("images/mexican_food.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-text-fill: gold;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 30px;
+    -fx-opacity: .75;
+}
+
+.checkbox-vietnamese {
+    -fx-background-image: url("images/vietnamese_food.jpeg");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-text-fill: gold;
+    -fx-font-family: "Arial Black";
+    -fx-font-size: 30px;
+    -fx-opacity: .75;
+}
+
